@@ -8,7 +8,7 @@
     "shared"
   ],
   "scripts": {
-    "serve": "npm run serve --workspace=client",
+    "start": "npm run dev --workspace=client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
