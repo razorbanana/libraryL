@@ -14,7 +14,9 @@ import HelloWorld from './components/HelloWorld.vue'
     </div>
   </header>
 
-  <RouterView />
+  <transition name="fade" mode="out-in">
+    <RouterView />
+  </transition>
 </template>
 
 <style scoped>
@@ -41,5 +43,12 @@ import HelloWorld from './components/HelloWorld.vue'
     justify-content: space-around;
   }
 
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 500ms;
+  }
+
+  .fade-enter-from, .fade-leave-to {
+    opacity: 0;
+  }
 
 </style>
