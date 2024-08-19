@@ -8,8 +8,8 @@ import HelloWorld from './components/HelloWorld.vue'
     <div class="wrapper">
       <nav>
           <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
           <RouterLink to="/list">List</RouterLink>
+          <RouterLink to="/form">Add Review</RouterLink>
       </nav>
     </div>
   </header>
@@ -38,7 +38,7 @@ import HelloWorld from './components/HelloWorld.vue'
   }
 
   nav {
-    width: 50%;
+    width: 70%;
     display: flex;
     justify-content: space-around;
   }
