@@ -107,6 +107,7 @@ ul {
 }
 
 .input-container>textarea{
+  font-family: 'Segoe UI';
   background-color: var(--color-background-soft);
   color: var(--color-text);
   margin: 1rem auto;

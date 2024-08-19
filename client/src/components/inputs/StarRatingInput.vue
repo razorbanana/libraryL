@@ -1,5 +1,4 @@
 <template>
-    <label>Star rating</label>
     <div class="star-rating">
         <span
         v-for="star in stars"

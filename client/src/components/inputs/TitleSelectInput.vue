@@ -1,7 +1,6 @@
 <template>
-    <label for="title">Title</label>
     <div class="search-container input-container">
-        <input type="text" name="title" required :value="query" @input="updateQuery" @focus="isFocused = true" @blur="isFocused = false">
+        <input type="text" placeholder="Title" name="title" required :value="query" @input="updateQuery" @focus="isFocused = true" @blur="isFocused = false">
         <ul class="books-list" v-if="isFocused && filteredBooks.length">
             <li v-for="book in filteredBooks" :key="book.id" :value="book.id" class="books-list__item" @mousedown.prevent="selectBook(book.title)">{{ book.title }}</li>
         </ul>

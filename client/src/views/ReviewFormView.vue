@@ -6,10 +6,8 @@
                 <TitleSelectInput @update:value="title = $event"/>
                 <StarRatingInput  @update:value="starRating = $event"/>
                 <div class="input-container">
-                    <label for="review">Review</label>
-                    <textarea id="review" name="review" @input="updateReview"></textarea>
+                    <textarea id="review" placeholder="Type your review (optional)" name="review" @input="updateReview"></textarea>
                 </div>
-                <span>{{review}}</span>
                 <button type="submit">Submit</button>
             </form>
         </div>
