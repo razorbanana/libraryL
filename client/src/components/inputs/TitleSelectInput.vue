@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang='ts'>
-    import { defineProps, defineEmits, ref, computed } from 'vue';
+    import { defineEmits, ref, computed } from 'vue';
     import { useBooksStore } from '@/stores/booksStore';
 
     const query = ref('');
@@ -64,6 +64,10 @@
         padding: 0.5rem;
         list-style-type: none;
         cursor: pointer;
-        
+        border-bottom: 1px dashed var(--color-border);
+    }
+
+    .books-list__item:last-of-type{
+        border-bottom: 0px;
     }
 </style>

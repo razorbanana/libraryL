@@ -3,11 +3,13 @@
         <div class="review-form-container">
             <h1>Review Form</h1>
             <form class="review-form input-container" >
-                <TitleSelectInput :value="title" @update:value="title = $event"/>
-                <label for="rating">Rating</label>
-                <input type="number" id="rating" name="rating" required>
-                <label for="review">Review</label>
-                <textarea id="review" name="review"></textarea>
+                <TitleSelectInput @update:value="title = $event"/>
+                <StarRatingInput  @update:value="starRating = $event"/>
+                <div class="input-container">
+                    <label for="review">Review</label>
+                    <textarea id="review" name="review" @input="updateReview"></textarea>
+                </div>
+                <span>{{review}}</span>
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -17,7 +19,14 @@
 <script setup lang="ts">
     import { ref } from 'vue'
     import TitleSelectInput from '../components/inputs/TitleSelectInput.vue'
+import StarRatingInput from '@/components/inputs/StarRatingInput.vue';
     const title = ref('')
+    const starRating = ref(0)
+    const review = ref('')
+
+    const updateReview = (e: Event) => {
+        review.value = (e.target as HTMLInputElement).value
+    }
 </script>
 
 <style>
@@ -25,8 +34,9 @@
         margin: 0 auto;
     }
 
-    .review-form>label {
+    .review-form label {
         font-size: 1.5rem;
+        display: block;
     }
 
     .review-form>button {
