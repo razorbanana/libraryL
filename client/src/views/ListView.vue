@@ -25,15 +25,5 @@
 </script>
 
 <style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-    }
-
-    .grid-item {
-        border: 1px solid #333;
-        padding: 10px;
-        text-align: center;
-    }
+    
 </style>

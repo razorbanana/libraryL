@@ -8,7 +8,7 @@
                 <div class="input-container">
                     <textarea id="review" placeholder="Type your review (optional)" name="review" @input="updateReview"></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" @click.prevent="submitReview">Submit</button>
             </form>
         </div>
     </div>

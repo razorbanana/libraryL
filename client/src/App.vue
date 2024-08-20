@@ -10,6 +10,7 @@ import HelloWorld from './components/HelloWorld.vue'
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/list">List</RouterLink>
           <RouterLink to="/form">Add Review</RouterLink>
+          <RouterLink to="/reviews">Manage Review</RouterLink>
       </nav>
     </div>
   </header>
