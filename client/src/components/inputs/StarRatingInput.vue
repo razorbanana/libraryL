@@ -1,17 +1,28 @@
 <template>
     <div class="star-rating">
-        <span
+        <div 
+        class="reset-stars"
+        @mouseover="hoverStar(0)"
+        @mouseleave="hoverStar(0)"
+        @click="selectRating(0)"
+        ></div>
+        <div
         v-for="star in stars"
         :key="star"
+        class="star"
         :class="{'filled': star <= hoveredStar || star <= selectedRating}"
         @mouseover="hoverStar(star)"
         @mouseleave="hoverStar(0)"
         @click="selectRating(star)"
-        class="star"
         >
-        &#9733; 
-        </span>
-  </div>
+        </div>
+        <div 
+        class="reset-stars"
+        @mouseover="hoverStar(5)"
+        @mouseleave="hoverStar(0)"
+        @click="selectRating(5)"
+        ></div>
+    </div>
 </template>
 
 <script setup lang='ts'>
@@ -42,17 +53,22 @@
         cursor: pointer;
     }
 
-    .star {
+    .star::before {
+        content: "\2606";
         font-size: 4rem;
-        color: #ccc; 
         transition: color 0.2s;
     }
 
-    .star.filled {
-        color: #ffcc00; 
+    .filled::before {
+        content: "\2605";
+        font-size: 4rem;
+        transition: color 0.2s;
     }
 
-    .star:hover {
-        color: #ffcc00;
+    .reset-stars {
+        width: 1rem;
+        cursor: pointer;
     }
+
+
 </style>

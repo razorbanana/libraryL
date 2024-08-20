@@ -2,7 +2,7 @@
     <div class="search-container input-container">
         <input type="text" placeholder="Title" name="title" required :value="query" @input="updateQuery" @focus="isFocused = true" @blur="isFocused = false">
         <ul class="books-list" v-if="isFocused && filteredBooks.length">
-            <li v-for="book in filteredBooks" :key="book.id" :value="book.id" class="books-list__item" @mousedown.prevent="selectBook(book.title)">{{ book.title }}</li>
+            <li v-for="book in filteredBooks" :key="book.id" :value="book.id" class="books-list__item" @mousedown.prevent="selectBook(book)">{{ book.title }}</li>
         </ul>
     </div>
 </template>
@@ -10,6 +10,7 @@
 <script setup lang='ts'>
     import { defineEmits, ref, computed } from 'vue';
     import { useBooksStore } from '@/stores/booksStore';
+    import type { Book } from 'shared';
 
     const query = ref('');
     const isFocused = ref(false);
@@ -22,14 +23,14 @@
         query.value = (e.target as HTMLInputElement).value;
         if (filteredBooks.value.length === 1 && query.value === filteredBooks.value[0].title) {
             isFocused.value = false;
-            emit('update:value', filteredBooks.value[0].title);
+            emit('update:value', filteredBooks.value[0].id);
         }
     }
 
-    const selectBook = (title: string) => {
-        query.value = title;
+    const selectBook = (book: Book) => {
+        query.value = book.title;
         isFocused.value = false;
-        emit('update:value', title);
+        emit('update:value', book.id);
     }
 
     const emit = defineEmits<{
