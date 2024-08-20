@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang='ts'>
-    import { defineEmits, ref, computed } from 'vue';
+    import { defineEmits, ref, computed, defineExpose } from 'vue';
     import { useBooksStore } from '@/stores/booksStore';
     import type { Book } from 'shared';
 
@@ -32,6 +32,14 @@
         isFocused.value = false;
         emit('update:value', book.id);
     }
+
+    const resetQuery = () => {
+        query.value = '';
+    };
+
+    defineExpose({
+        resetQuery
+    });
 
     const emit = defineEmits<{
         (e: 'update:value', value: string): void;

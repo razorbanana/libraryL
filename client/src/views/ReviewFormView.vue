@@ -3,10 +3,10 @@
         <div class="review-form-container">
             <h1>Review Form</h1>
             <form class="review-form input-container" >
-                <TitleSelectInput @update:value="bookId = $event"/>
-                <StarRatingInput  @update:value="starRating = $event"/>
+                <TitleSelectInput ref="titleInput" @update:value="bookId = $event"/>
+                <StarRatingInput  ref="starInput" @update:value="starRating = $event"/>
                 <div class="input-container">
-                    <textarea id="review" placeholder="Type your review (optional)" name="review" @input="updateReview"></textarea>
+                    <textarea :value="review" placeholder="Type your review (optional)" name="review" @input="updateReview"></textarea>
                 </div>
                 <button type="submit" @click.prevent="submitReview">Submit</button>
             </form>
@@ -15,12 +15,15 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue'
+    import { ref, type Ref } from 'vue'
     import TitleSelectInput from '../components/inputs/TitleSelectInput.vue'
     import StarRatingInput from '@/components/inputs/StarRatingInput.vue';
-    import type { Review } from 'shared';
     import type { AddReviewPayload } from '@/types/reviewTypes';
     import { useReviewStore } from '@/stores/reviewStore';
+import type { StarRatingInputInstance, TitleSelectInputInstance } from '@/types/inputTypes';
+
+    const starInput: Ref<StarRatingInputInstance | null> = ref(null)
+    const titleInput: Ref<TitleSelectInputInstance | null> = ref(null)
     const bookId = ref('')
     const starRating = ref(0)
     const review = ref('')
@@ -30,13 +33,15 @@
     }
 
     const submitReview = () => {
-        console.log({ bookId: bookId.value, starRating: starRating.value, review: review.value })
         const newReview: AddReviewPayload = {
             bookId: bookId.value,
             rating: starRating.value,
             review: review.value
         }
         useReviewStore().addReview(newReview)
+        titleInput.value?.resetQuery()
+        starInput.value?.resetRating()
+        review.value = ''
     }
 </script>
 

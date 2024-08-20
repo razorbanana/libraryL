@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang='ts'>
-    import { ref } from 'vue';
+    import { ref, defineExpose } from 'vue';
 
     const stars = ref([1, 2, 3, 4, 5]); 
     const hoveredStar = ref(0); 
@@ -40,6 +40,14 @@
         selectedRating.value = star;
         emit('update:value', star);
     };
+
+    const resetRating = () => {
+        selectedRating.value = 0;
+    };
+
+    defineExpose({
+        resetRating
+    });
 
     const emit = defineEmits<{
         (e: 'update:value', value: number): void;
