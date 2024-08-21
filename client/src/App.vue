@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+    import { RouterLink, RouterView } from 'vue-router'
+    import ErrorBoundary from '@/components/ErrorBoundary.vue';
+    
 </script>
-
+ 
 <template>
   <header>
     <div class="wrapper">
@@ -14,13 +15,36 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header>
-
-  <transition name="fade" mode="out-in">
-    <RouterView />
-  </transition>
+  <ErrorBoundary/>
+  <router-view v-slot="{ Component }">
+    <Transition name="page">
+      <component :is="Component" />
+    </Transition>
+  </router-view>
 </template>
 
 <style scoped>
+
+  .page-enter-active,
+  .page-leave-active {
+    transition: opacity 250ms ease;
+  }
+
+  .page-enter-from,
+  .page-leave-to {
+    display: relative;
+    opacity: 0;
+  }
+
+  .error-enter-active,
+  .error-leave-active {
+    transition: opacity 250ms ease;
+  }
+
+  .error-enter-from,
+  .error-leave-to {
+    opacity: 0;
+  }
 
   nav>a {
     font-size: large;

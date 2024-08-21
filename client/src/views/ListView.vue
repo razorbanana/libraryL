@@ -16,7 +16,7 @@
     import { ref, computed } from 'vue'
     import FilterInput from '../components/inputs/FilterInput.vue'
     import { useBooksStore } from '@/stores/booksStore';
-
+    
     const books = useBooksStore().getBooks()
     const filterValue = ref('')
     const filteredBooks = computed(() => {

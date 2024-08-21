@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import type { Book } from 'shared'
+import { ref, type Ref } from 'vue'
 
 export const useBooksStore = defineStore('books', () => {
-  const books: Book[] = [
+  const books: Ref<Book[]> = ref([
         {
             id: '746be257fc',
             title: '1984',
@@ -31,14 +32,14 @@ export const useBooksStore = defineStore('books', () => {
             authors: ['Another Author'],
             publishedDate: '2022-02-02',
         }
-    ]
+    ])
 
   function getBooks() {
-    return books
+    return books.value
   }
 
   function getBook(id: string) {
-    return books.find(book => book.id === id)
+    return books.value.find(book => book.id === id)
   }
   
   return { getBooks, getBook }

@@ -10,3 +10,9 @@ export const generateBookId = () => {
     const nanoid = customAlphabet('1234567890abcdef', 10)
     return nanoid()
 }
+
+
+export const generateErrorId = () => {
+    const nanoid = customAlphabet('1234567890abcdef', 4)
+    return nanoid()
+}
