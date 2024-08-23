@@ -8,10 +8,15 @@
     "shared"
   ],
   "scripts": {
-    "start": "npm run dev --workspace=client",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docker:compose": "docker-compose up -d",
+    "client:dev": "npm run dev --workspace=client",
+    "server:dev": "wait-on tcp:6379 && npm run start:dev --workspace=server",
+    "start": "concurrently 'npm:docker:compose' 'npm:client:dev'"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
