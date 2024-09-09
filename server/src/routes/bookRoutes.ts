@@ -1,25 +1,14 @@
+import { deleteBook, getAllBooks, patchBook, postBook } from '@/controllers/book.controller';
 import express from 'express';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.status(200);
-    res.send('wow get books');
-})
+router.get('/', getAllBooks)
 
-router.post('/', (req, res) => {
-    res.status(201);
-    res.send('wow post books');
-})
+router.post('/', postBook)
 
-router.patch('/:id', (req, res) => {
-    res.status(205);
-    res.send('wow patch books');
-})
+router.patch('/:id', patchBook)
 
-router.delete('/:id', (req, res) => {
-    res.status(205);
-    res.send('wow delete books');
-})
+router.delete('/:id', deleteBook)
 
 export default router;
