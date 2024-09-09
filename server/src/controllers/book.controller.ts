@@ -1,40 +1,40 @@
-import { addReview, deleteReviewById, getReviews, updateReviewById } from '../services/review.service';
+import { addBook, deleteBookById, getBooks, updateBookById } from '@/services/book.service';
 import { Request, Response } from 'express';
 
-export const getAllReviews = async (req: Request, res: Response) => {
+export const getAllBooks = async (req: Request, res: Response) => {
     try {
-        const response = await getReviews();
+        const response = await getBooks();
         res.status(200).json(response);
     }catch(err: any) {
         res.status(500).json({message: err.message});
     }
 }
 
-export const postReview = async (req: Request, res: Response) => {
+export const postBook = async (req: Request, res: Response) => {
     try {
-        const review = req.body;
-        const response = await addReview(review);
+        const book = req.body;
+        const response = await addBook(book);
         res.status(201).json(response);
     }catch(err: any) {
         res.status(500).json({message: err.message});
     }
 }
 
-export const patchReview = async (req: Request, res: Response) => {
+export const patchBook = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
         const updatedFields = req.body;
-        const response = await updateReviewById(id, updatedFields);
+        const response = await updateBookById(id, updatedFields);
         res.status(201).json(response);
     }catch(err: any) {
         res.status(500).json({message: err.message});
     }
 }
 
-export const deleteReview = async (req: Request, res: Response) => {
+export const deleteBook = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
-        const response = await deleteReviewById(id);
+        const response = await deleteBookById(id);
         res.status(201).json(response);
     }catch(err: any) {
         res.status(500).json({message: err.message});

@@ -1,5 +1,5 @@
 import { AddReviewDto, UpdateReviewDto } from "../dto/review.dto"
-import { reviewRepository } from "../repositories/reviewRepository"
+import { reviewRepository } from "../repositories/review.repository"
 
 export const getReviews = async () => {
     return await reviewRepository.find()
@@ -9,7 +9,7 @@ export const addReview = async (review: AddReviewDto) => {
     return await reviewRepository.save(review)
 }
 
-export const updateReview = async (id: number, updatedFields: UpdateReviewDto) => {
+export const updateReviewById = async (id: string, updatedFields: UpdateReviewDto) => {
     const review = await reviewRepository.findOne({
         where: {id}
     })
@@ -20,6 +20,6 @@ export const updateReview = async (id: number, updatedFields: UpdateReviewDto) =
     return await reviewRepository.save(newReview)
 }
 
-export const deleteReviewById = async (id: number) => {
+export const deleteReviewById = async (id: string) => {
     return await reviewRepository.delete(id)
 }

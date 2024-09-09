@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import config from "./config/config";
 import { Review } from "./models/Review";
+import { Author, Book, BookAuthor } from "./models/Book";
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -11,7 +12,7 @@ export const AppDataSource = new DataSource({
     database: config.db.database,
     synchronize: true,
     logging: true,
-    entities: [Review],
+    entities: [Review, Book, Author, BookAuthor],
     subscribers: [],
     migrations: [],
 })
