@@ -3,7 +3,22 @@ import { BookAuthor } from "../models/Book"
 import { bookRepository, bookAuthorRepository, authorRepository } from "../repositories/book.repository"
 
 export const getBooks = async () => {
-    return await bookRepository.find()
+    const books = await bookRepository
+        .createQueryBuilder("book")
+        .leftJoinAndSelect("book.bookAuthors", "bookAuthor")
+        .leftJoinAndSelect("bookAuthor.author", "author")
+        .getMany()
+    return books.map(book => ({
+        id: book.id,
+        title: book.title,
+        description: book.description,
+        authors: book.bookAuthors.map(bookAuthor => ({
+            id: bookAuthor.author.id,
+            name: bookAuthor.author.name,
+            description: bookAuthor.author.description
+        })),
+        publishedDate: book.publishedDate
+    }));
 }
 
 export const addBook = async (book: AddBookDto) => {
