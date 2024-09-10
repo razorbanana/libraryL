@@ -53,3 +53,7 @@ export const updateBookById = async (id: string, updatedFields: UpdateBookDto) =
 export const deleteBookById = async (id: string) => {
     return await bookRepository.delete(id)
 }
+
+export const deleteAllBooks = async () => {
+    return await bookRepository.delete({})
+}

@@ -12,7 +12,7 @@ export class Book {
     @Column({type: "text", nullable: true})
     description: string;
 
-    @OneToMany((type) => BookAuthor, (bookAuthor) => bookAuthor.book)
+    @OneToMany((type) => BookAuthor, (bookAuthor) => bookAuthor.book, {cascade: true})
     bookAuthors: BookAuthor[];
 
     @Column({type: "varchar", length: 10})
@@ -41,11 +41,11 @@ export class Author {
 
 @Entity()
 export class BookAuthor {
-    @ManyToOne(() => Book, (book) => book.bookAuthors)
+    @ManyToOne(() => Book, (book) => book.bookAuthors, { onDelete: 'CASCADE' })
     @PrimaryColumn({ type: 'varchar', name: 'bookId' })
     book!: Book;
 
-    @ManyToOne(() => Author, (author) => author.authorBooks)
+    @ManyToOne(() => Author, (author) => author.authorBooks, { onDelete: 'CASCADE' })
     @PrimaryColumn({ type: 'varchar', name: 'authorId' })
     author!: Author
 }
