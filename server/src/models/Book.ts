@@ -9,7 +9,7 @@ export class Book {
     @Column({type: "varchar", length: 64})
     title: string;
 
-    @Column({type: "text"})
+    @Column({type: "text", nullable: true})
     description: string;
 
     @OneToMany((type) => BookAuthor, (bookAuthor) => bookAuthor.book)
@@ -24,6 +24,8 @@ export class Book {
 
 @Entity()
 export class Author {
+
+
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -40,12 +42,10 @@ export class Author {
 @Entity()
 export class BookAuthor {
     @ManyToOne(() => Book, (book) => book.bookAuthors)
-    @JoinColumn({ name: 'book_id' })
     @PrimaryColumn({ type: 'varchar', name: 'bookId' })
     book!: Book;
 
     @ManyToOne(() => Author, (author) => author.authorBooks)
-    @JoinColumn({ name: 'author_id' })
     @PrimaryColumn({ type: 'varchar', name: 'authorId' })
     author!: Author
 }

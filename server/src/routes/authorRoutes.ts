@@ -1,4 +1,4 @@
-import { deleteAuthor, getAllAuthors, patchAuthor, postAuthor } from '@/controllers/author.controller';
+import { deleteAuthor, getAllAuthors, patchAuthor, postAuthor } from '../controllers/author.controller';
 import express from 'express';
 
 const router = express.Router();

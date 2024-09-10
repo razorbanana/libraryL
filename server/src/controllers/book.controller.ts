@@ -1,4 +1,4 @@
-import { addBook, deleteBookById, getBooks, updateBookById } from '@/services/book.service';
+import { addBook, deleteBookById, getBooks, updateBookById } from '../services/book.service';
 import { Request, Response } from 'express';
 
 export const getAllBooks = async (req: Request, res: Response) => {

@@ -1,5 +1,5 @@
-import { AddAuthorDto, UpdateAuthorDto } from "@/dto/author.dto"
-import { authorRepository } from "@/repositories/book.repository"
+import { AddAuthorDto, UpdateAuthorDto } from "../dto/author.dto"
+import { authorRepository } from "../repositories/book.repository"
 
 export const getAuthors = async () => {
     return await authorRepository.find()

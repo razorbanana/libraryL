@@ -1,4 +1,4 @@
-import { addAuthor, deleteAuthorById, getAuthors, updateAuthorById } from '@/services/author.service';
+import { addAuthor, deleteAuthorById, getAuthors, updateAuthorById } from '../services/author.service';
 import { Request, Response } from 'express';
 
 export const getAllAuthors = async (req: Request, res: Response) => {

@@ -1,4 +1,4 @@
-import { deleteBook, getAllBooks, patchBook, postBook } from '@/controllers/book.controller';
+import { deleteBook, getAllBooks, patchBook, postBook } from '../controllers/book.controller';
 import express from 'express';
 
 const router = express.Router();
