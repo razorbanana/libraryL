@@ -1,8 +1,14 @@
+export type Author = {
+    id: string,
+    name: string,
+    description?: string
+}
+
 export type Book = {
     id: string,
     title: string,
-    description: string,
-    authors: string[],
+    description?: string,
+    authors: Author[],
     publishedDate: string,
 }
 

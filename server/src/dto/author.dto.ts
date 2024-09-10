@@ -1,6 +1,6 @@
 export type AddAuthorDto = {
     name: string;
-    description: string;
+    description?: string;
 }
 
 export type UpdateAuthorDto = {

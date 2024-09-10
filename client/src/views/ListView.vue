@@ -13,15 +13,30 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, computed } from 'vue'
+    import { ref, computed, onMounted, type Ref } from 'vue'
     import FilterInput from '../components/inputs/FilterInput.vue'
     import { useBooksStore } from '@/stores/booksStore';
+import type { Book } from 'shared';
     
-    const books = useBooksStore().getBooks()
+    const bookStore = useBooksStore() 
+    const books:Ref<Book[]> = ref([])
+    console.log(books)
     const filterValue = ref('')
     const filteredBooks = computed(() => {
-        return books.filter(book => book.title.toLowerCase().includes(filterValue.value.toLowerCase()))
+        return books.value.filter(book => book.title.toLowerCase().includes(filterValue.value.toLowerCase()))
     })
+
+    onMounted(async () => {
+        const { success, status } = await useBooksStore().dispatchGetBooks();
+
+        if (!success) {
+            alert("Ups, something happened 🙂");
+            console.log("Api status ->", status);
+        }else{
+            books.value = bookStore.getBooks();
+        }
+    });
+
 </script>
 
 <style>

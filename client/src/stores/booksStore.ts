@@ -1,38 +1,15 @@
+import { API } from '@/api'
+import type { AxiosError } from 'axios'
 import { defineStore } from 'pinia'
 import type { Book } from 'shared'
 import { ref, type Ref } from 'vue'
 
 export const useBooksStore = defineStore('books', () => {
-  const books: Ref<Book[]> = ref([
-        {
-            id: '746be257fc',
-            title: '1984',
-            description: 'A dystopian novel by George Orwell.',
-            authors: ['George Orwell'],
-            publishedDate: '1949-06-08',
-        },
-        {
-            id: '8a6d7284fb',
-            title: 'Animal Farm',
-            description: 'Animal Farm is a satirical allegorical novella, in the form of a beast fable, by George Orwell, first published in England on 17 August 1945.',
-            authors: ['George Orwell'],
-            publishedDate: '1945-08-17',
-        },
-        {
-            id: '1234567890',
-            title: 'Book Title',
-            description: 'Book Description',
-            authors: ['Author Name'],
-            publishedDate: '2022-01-01',
-        },
-        {
-            id: 'abcdef1234',
-            title: 'Another Book',
-            description: 'Another Book Description',
-            authors: ['Another Author'],
-            publishedDate: '2022-02-02',
-        }
-    ])
+  const books: Ref<Book[]> = ref([])
+
+  function initBooks(data: Book[]){
+    books.value = data
+  }
 
   function getBooks() {
     return books.value
@@ -41,6 +18,31 @@ export const useBooksStore = defineStore('books', () => {
   function getBook(id: string) {
     return books.value.find(book => book.id === id)
   }
+
+  async function dispatchGetBooks() {
+    try{
+      const {status, data} = await API.books.getBooks()
+      if (status === 200){
+        initBooks(data)
+        return {
+          success: true,
+          content: null
+        }
+      }
+    } catch (error) {
+      const _error = error as AxiosError<string>
+      return {
+        success: false,
+        content: null,
+        status: _error.response?.status
+      }
+    }
+    return {
+      success: false,
+      status: 400,
+      content: null
+    }
+  }
   
-  return { getBooks, getBook }
+  return { getBooks, getBook, initBooks, dispatchGetBooks }
 })

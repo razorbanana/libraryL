@@ -32,7 +32,7 @@ export class Author {
     @Column({type: "varchar", length: 32})
     name: string;
 
-    @Column({type:"text"})
+    @Column({type:"text", nullable: true})
     description: string;
 
     @OneToMany((type) => BookAuthor, (bookAuthor) => bookAuthor.author, {cascade: true})

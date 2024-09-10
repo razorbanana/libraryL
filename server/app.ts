@@ -2,8 +2,9 @@ import express from 'express';
 import router from './src/routes/routes';
 import errorHandler from './src/middlewares/errorHandler';
 import { AppDataSource } from './src/data-source';
-
+import cors from 'cors';
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
